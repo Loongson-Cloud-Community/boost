@@ -428,6 +428,10 @@
     #define OSPLAT "OSPLAT=PARISC"
 #endif
 
+#ifdef __loongarch64
+    #define OSPLAT "OSPLAT=LOONGARCH64"
+#endif
+
 #ifndef OSPLAT
     #define OSPLAT ""
 #endif

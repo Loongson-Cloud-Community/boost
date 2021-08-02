@@ -76,12 +76,14 @@ local rule default_abi ( )
     else if [ os.name ] = "CYGWIN" { tmp = ms ; }
     else if [ os.platform ] = "ARM" { tmp = aapcs ; }
     else if [ os.platform ] = "MIPS" { tmp = o32 ; }
+    else if [ os.platform ] = "LOONGARCH64" { tmp = lp64 ; }
     return $(tmp) ;
 }
 
 feature.feature abi
    : aapcs
      eabi
+     lp64
      ms
      n32
      n64
@@ -221,6 +223,30 @@ alias asm_sources
      <architecture>arm
      <binary-format>mach-o
      <toolset>darwin
+   ;
+
+# LOONGARCH
+# LOONGARCH64/LP64/ELF
+alias asm_sources
+   : asm/make_loongarch64_lp64_elf_gas.S
+     asm/jump_loongarch64_lp64_elf_gas.S
+     asm/ontop_loongarch64_lp64_elf_gas.S
+   : <abi>lp64
+     <address-model>64
+     <architecture>loongarch64
+     <binary-format>elf
+     <toolset>clang
+   ;
+
+alias asm_sources
+   : asm/make_loongarch64_lp64_elf_gas.S
+     asm/jump_loongarch64_lp64_elf_gas.S
+     asm/ontop_loongarch64_lp64_elf_gas.S
+   : <abi>lp64
+     <address-model>64
+     <architecture>loongarch64
+     <binary-format>elf
+     <toolset>gcc
    ;
 
 # MIPS

@@ -273,6 +273,9 @@ def register_globals ():
 	# z Systems (aka s390x)
 	's390x',
 
+        # loongarch
+        'loongarch64',
+
         # Combined architectures for platforms/toolsets that support building for
         # multiple architectures at once. "combined" would be the default multi-arch
         # for the toolset.
